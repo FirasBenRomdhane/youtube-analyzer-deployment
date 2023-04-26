@@ -1,1 +1,1 @@
-# faza-langchain-analytics
+# Video-to-text deployment
