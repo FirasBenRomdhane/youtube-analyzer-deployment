@@ -1,0 +1,85 @@
+Attaching to video-to-text-deployment_backend_1, video-to-text-deployment_frontend_1
+[33mfrontend_1  |[0m 
+[33mfrontend_1  |[0m > frontend@0.1.0 start /app
+[33mfrontend_1  |[0m > react-scripts start
+[33mfrontend_1  |[0m 
+[33mfrontend_1  |[0m (node:30) [DEP_WEBPACK_DEV_SERVER_ON_AFTER_SETUP_MIDDLEWARE] DeprecationWarning: 'onAfterSetupMiddleware' option is deprecated. Please use the 'setupMiddlewares' option.
+[33mfrontend_1  |[0m (Use `node --trace-deprecation ...` to show where the warning was created)
+[33mfrontend_1  |[0m (node:30) [DEP_WEBPACK_DEV_SERVER_ON_BEFORE_SETUP_MIDDLEWARE] DeprecationWarning: 'onBeforeSetupMiddleware' option is deprecated. Please use the 'setupMiddlewares' option.
+[33mfrontend_1  |[0m Starting the development server...
+[33mfrontend_1  |[0m 
+[33mfrontend_1  |[0m Compiled with warnings.
+[33mfrontend_1  |[0m 
+[33mfrontend_1  |[0m [eslint] 
+[33mfrontend_1  |[0m src/components/Home.jsx
+[33mfrontend_1  |[0m   Line 11:12:  'response' is assigned a value but never used        no-unused-vars
+[33mfrontend_1  |[0m   Line 40:19:  'home_container' is assigned a value but never used  no-unused-vars
+[33mfrontend_1  |[0m 
+[33mfrontend_1  |[0m src/components/QA.jsx
+[33mfrontend_1  |[0m   Line 8:10:  'response' is assigned a value but never used  no-unused-vars
+[33mfrontend_1  |[0m 
+[33mfrontend_1  |[0m Search for the keywords to learn more about each warning.
+[33mfrontend_1  |[0m To ignore, add // eslint-disable-next-line to the line before.
+[33mfrontend_1  |[0m 
+[33mfrontend_1  |[0m WARNING in [eslint] 
+[33mfrontend_1  |[0m src/components/Home.jsx
+[33mfrontend_1  |[0m   Line 11:12:  'response' is assigned a value but never used        no-unused-vars
+[33mfrontend_1  |[0m   Line 40:19:  'home_container' is assigned a value but never used  no-unused-vars
+[33mfrontend_1  |[0m 
+[33mfrontend_1  |[0m src/components/QA.jsx
+[33mfrontend_1  |[0m   Line 8:10:  'response' is assigned a value but never used  no-unused-vars
+[33mfrontend_1  |[0m 
+[33mfrontend_1  |[0m webpack compiled with 1 warning
+[33mfrontend_1  |[0m 
+[33mfrontend_1  |[0m > frontend@0.1.0 start /app
+[33mfrontend_1  |[0m > react-scripts start
+[33mfrontend_1  |[0m 
+[33mfrontend_1  |[0m (node:30) [DEP_WEBPACK_DEV_SERVER_ON_AFTER_SETUP_MIDDLEWARE] DeprecationWarning: 'onAfterSetupMiddleware' option is deprecated. Please use the 'setupMiddlewares' option.
+[33mfrontend_1  |[0m (Use `node --trace-deprecation ...` to show where the warning was created)
+[33mfrontend_1  |[0m (node:30) [DEP_WEBPACK_DEV_SERVER_ON_BEFORE_SETUP_MIDDLEWARE] DeprecationWarning: 'onBeforeSetupMiddleware' option is deprecated. Please use the 'setupMiddlewares' option.
+[33mfrontend_1  |[0m Starting the development server...
+[33mfrontend_1  |[0m 
+[33mfrontend_1  |[0m Compiled successfully!
+[33mfrontend_1  |[0m 
+[33mfrontend_1  |[0m You can now view frontend in the browser.
+[33mfrontend_1  |[0m 
+[33mfrontend_1  |[0m   Local:            http://localhost:3000
+[33mfrontend_1  |[0m   On Your Network:  http://172.19.0.2:3000
+[33mfrontend_1  |[0m 
+[33mfrontend_1  |[0m Note that the development build is not optimized.
+[33mfrontend_1  |[0m To create a production build, use npm run build.
+[33mfrontend_1  |[0m 
+[33mfrontend_1  |[0m webpack compiled successfully
+[33mfrontend_1  |[0m 
+[33mfrontend_1  |[0m > frontend@0.1.0 start /app
+[33mfrontend_1  |[0m > react-scripts start
+[33mfrontend_1  |[0m 
+[33mfrontend_1  |[0m (node:30) [DEP_WEBPACK_DEV_SERVER_ON_AFTER_SETUP_MIDDLEWARE] DeprecationWarning: 'onAfterSetupMiddleware' option is deprecated. Please use the 'setupMiddlewares' option.
+[33mfrontend_1  |[0m (Use `node --trace-deprecation ...` to show where the warning was created)
+[33mfrontend_1  |[0m (node:30) [DEP_WEBPACK_DEV_SERVER_ON_BEFORE_SETUP_MIDDLEWARE] DeprecationWarning: 'onBeforeSetupMiddleware' option is deprecated. Please use the 'setupMiddlewares' option.
+[33mfrontend_1  |[0m Starting the development server...
+[33mfrontend_1  |[0m 
+[33mfrontend_1  |[0m Compiled successfully!
+[33mfrontend_1  |[0m 
+[33mfrontend_1  |[0m You can now view frontend in the browser.
+[33mfrontend_1  |[0m 
+[33mfrontend_1  |[0m   Local:            http://localhost:3000
+[33mfrontend_1  |[0m   On Your Network:  http://172.19.0.2:3000
+[33mfrontend_1  |[0m 
+[33mfrontend_1  |[0m Note that the development build is not optimized.
+[33mfrontend_1  |[0m To create a production build, use npm run build.
+[33mfrontend_1  |[0m 
+[33mfrontend_1  |[0m webpack compiled successfully
+[33mfrontend_1  |[0m 
+[33mfrontend_1  |[0m > frontend@0.1.0 start /app
+[33mfrontend_1  |[0m > react-scripts start
+[33mfrontend_1  |[0m 
+[36mbackend_1   |[0m INFO:     Will watch for changes in these directories: ['/app']
+[36mbackend_1   |[0m INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
+[36mbackend_1   |[0m INFO:     Started reloader process [1] using WatchFiles
+[36mbackend_1   |[0m Downloading (?)lve/main/config.json:   0%|          | 0.00/515 [00:00<?, ?B/s]Downloading (?)lve/main/config.json: 100%|??????????| 515/515 [00:00<00:00, 177kB/s]
+[36mbackend_1   |[0m Downloading pytorch_model.bin:   0%|          | 0.00/443M [00:00<?, ?B/s]Downloading pytorch_model.bin:   2%|?         | 10.5M/443M [00:15<10:51, 663kB/s]Downloading pytorch_model.bin:   2%|?         | 10.5M/443M [00:29<10:51, 663kB/s]Downloading pytorch_model.bin:   5%|?         | 21.0M/443M [00:32<10:45, 653kB/s]Downloading pytorch_model.bin:   5%|?         | 21.0M/443M [00:49<10:45, 653kB/s]Downloading pytorch_model.bin:   7%|?         | 31.5M/443M [00:50<11:21, 603kB/s]Downloading pytorch_model.bin:   9%|?         | 41.9M/443M [01:05<10:25, 640kB/s]Downloading pytorch_model.bin:   9%|?         | 41.9M/443M [01:19<10:25, 640kB/s]Downloading pytorch_model.bin:  12%|??        | 52.4M/443M [01:22<10:09, 640kB/s]Downloading pytorch_model.bin:  12%|??        | 52.4M/443M [01:39<10:09, 640kB/s]Downloading pytorch_model.bin:  14%|??        | 62.9M/443M [01:39<10:09, 622kB/s]Downloading pytorch_model.bin:  14%|??        | 62.9M/443M [01:59<10:09, 622kB/s]Downloading pytorch_model.bin:  17%|??        | 73.4M/443M [02:01<10:48, 569kB/s]Downloading pytorch_model.bin:  19%|??        | 83.9M/443M [02:16<09:49, 609kB/s]Downloading pytorch_model.bin:  21%|???       | 94.4M/443M [02:27<08:33, 679kB/s]Downloading pytorch_model.bin:  24%|???       | 105M/443M [02:39<07:35, 741kB/s] Downloading pytorch_model.bin:  24%|???       | 105M/443M [02:49<07:35, 741kB/s]Downloading pytorch_model.bin:  26%|???       | 115M/443M [02:54<07:28, 729kB/s]Downloading pytorch_model.bin:  28%|???       | 126M/443M [03:06<06:59, 755kB/s]Downloading pytorch_model.bin:  28%|???       | 126M/443M [03:19<06:59, 755kB/s]Downloading pytorch_model.bin:  31%|???       | 136M/443M [03:20<06:46, 753kB/s]Downloading pytorch_model.bin:  33%|????      | 147M/443M [03:34<06:28, 762kB/s]Downloading pytorch_model.bin:  36%|????      | 157M/443M [03:47<06:10, 769kB/s]Downloading pytorch_model.bin:  36%|????      | 157M/443M [03:59<06:10, 769kB/s]Downloading pytorch_model.bin:  38%|????      | 168M/443M [04:05<06:28, 707kB/s]Downloading pytorch_model.bin:  40%|????      | 178M/443M [04:17<05:55, 744kB/s]Downloading pytorch_model.bin:  40%|????      | 178M/443M [04:29<05:55, 744kB/s]Downloading pytorch_model.bin:  43%|?????     | 189M/443M [04:30<05:33, 761kB/s]Downloading pytorch_model.bin:  45%|?????     | 199M/443M [04:43<05:16, 770kB/s]Downloading pytorch_model.bin:  47%|?????     | 210M/443M [04:56<04:56, 785kB/s]Downloading pytorch_model.bin:  50%|?????     | 220M/443M [05:09<04:39, 794kB/s]Downloading pytorch_model.bin:  50%|?????     | 220M/443M [05:19<04:39, 794kB/s]Downloading pytorch_model.bin:  52%|??????    | 231M/443M [05:22<04:23, 804kB/s]Downloading pytorch_model.bin:  54%|??????    | 241M/443M [05:35<04:10, 804kB/s]Downloading pytorch_model.bin:  57%|??????    | 252M/443M [05:48<03:57, 804kB/s]INFO:     Stopping reloader process [1]
+[36mbackend_1   |[0m INFO:     Will watch for changes in these directories: ['/app']
+[36mbackend_1   |[0m INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
+[36mbackend_1   |[0m INFO:     Started reloader process [1] using WatchFiles
+[36mbackend_1   |[0m Downloading pytorch_model.bin:   0%|          | 0.00/443M [00:00<?, ?B/s]Downloading pytorch_model.bin:   2%|?         | 10.5M/443M [00:39<27:05, 266kB/s]Downloading pytorch_model.bin:   2%|?         | 10.5M/443M [00:49<27:05, 266kB/s]INFO:     Stopping reloader process [1]

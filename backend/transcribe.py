@@ -15,20 +15,22 @@ def extract_video_id(url):
 
 
 def load_urls(filename):
-    with open(filename, 'r') as f:
+    with open(filename, 'r', encoding='UTF-8') as f:
         urls = json.load(f)
     return urls
 
 
-def download(url, resolution, videos_path):
+def download(url, resolution, output_path):
     resolution = str(resolution) + "p"
     file_name = extract_video_id(url)
     if file_name:
-        file_name = file_name + ".mp4"
-        file_path = os.path.join(videos_path, file_name)
+        file_name = file_name + ".mp3"
+        file_path = os.path.join(output_path, file_name)
         print("Downloading", url)
-        yt = YouTube(url)
-        yt.streams.filter(res = resolution, progressive= True).first().download(videos_path, file_name)
+        yt = YouTube(url,use_oauth=True)
+
+    
+        yt.streams.filter(only_audio=True).first().download(output_path, file_name)
         print("Downloaded to", file_path)
         return {
             "filename": file_name,
@@ -36,13 +38,13 @@ def download(url, resolution, videos_path):
         }
 
 
-def transcribe(model, video_path, save):
-    print("Transcribing", video_path)
-    result = model.transcribe(video_path)    
+def transcribe(model, input_path, save):
+    print("Transcribing", input_path)
+    result = model.transcribe(input_path)    
     text = [item["text"] for item in result["segments"]]
     text = "".join(text)
     if not save:
-        os.remove(video_path)
+        os.remove(input_path)
     return text
 
 

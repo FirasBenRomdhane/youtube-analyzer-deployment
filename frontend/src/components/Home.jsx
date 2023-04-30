@@ -1,52 +1,105 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
+
+import './Home.css';
 
 
-const ws = new WebSocket("ws://localhost:8000/transcribe");
 
-ws.onopen = () => {
-    console.log("WebSocket connection established");
-};
-
-ws.onmessage = (event) => {
-    console.log("Received message:", event.data);
-
-    const div = document.querySelector('.container');
-    const h1 = document.createElement('h1');
-    const text = document.createTextNode(event.data);
-    h1.appendChild(text);
-    div.appendChild(h1);
-    document.body.appendChild(div);
-};
-
-ws.onerror = (event) => {
-    console.error("WebSocket error:", event);
-};
-
-ws.onclose = (event) => {
-    console.log("WebSocket connection closed with code:", event.code);
-};
 const Home = () => {
 
-
     const [text, setText] = useState('');
+    const [webSocket, setWebSocket] = useState(null);
+    const [response, setResponse] = useState('');
+    const [connectionStatus, setConnectionStatus] = useState('');
+    const messagesRef = useRef(null);
 
-    const handleTextChange = (event) => {
+
+    useEffect(()=>{
+        const newWebSocket = new WebSocket('ws://localhost:8000/transcribe');
+        setWebSocket(newWebSocket);
+
+
+        return ()=>{
+            newWebSocket.close()
+        }
+    },[])
+
+    const handleTextChange = (event)=>{
         setText(event.target.value);
-    };
-
-    const handleSubmit = (event) => {
-        event.preventDefault();
-        ws.send(text);
     }
 
+    const handleSubmit = (event) =>{
+        event.preventDefault();
+        messagesRef.current.style.opacity=1;
+        webSocket.send(text);
+    }
+
+    useEffect(()=>{
+
+        const handleResponse = (event)=>{
+            const messages_container = document.querySelector('.messages-container');
+            const home_container = document.querySelector('.home-container');
+            setResponse(event.data)
+
+
+            if (event.data !== "done"){
+                messages_container.innerHTML="";
+                const p = document.createElement('p');
+                const text = document.createTextNode(event.data);
+                p.appendChild(text);
+                messages_container.appendChild(p);
+                
+            }else{
+            
+        
+                const a = document.createElement('a');
+                const text = document.createTextNode('QA');
+                const button = document.createElement('button');
+        
+                a.href = "/qa";
+        
+                button.appendChild(text);
+                a.appendChild(button);
+                messages_container.appendChild(a);
+        
+            }
+        };
+
+        if (webSocket){
+            webSocket.addEventListener('message',handleResponse);
+        };
+    },[webSocket]);
+
+
+    useEffect(() => {
+        const handleOpen = () => {
+          setConnectionStatus('Connected');
+        };
+    
+        const handleClose = () => {
+          setConnectionStatus('Disconnected');
+        };
+    
+        if (webSocket) {
+          webSocket.addEventListener('open', handleOpen);
+          webSocket.addEventListener('close', handleClose);
+        }
+    
+        return () => {
+          if (webSocket) {
+            webSocket.removeEventListener('open', handleOpen);
+            webSocket.removeEventListener('close', handleClose);
+          }
+        };
+      }, [webSocket]);
 
 
     return (
-        <div className="container">
+        <div className="home-container">
             <form onSubmit={handleSubmit}>
                 <input type="text" value={text} onChange={handleTextChange} />
-                <button type="submit">Submit</button>
+                {connectionStatus === 'Connected' && <button type="submit">Transcribe</button>}
             </form>
+            <div className="messages-container" ref={messagesRef}></div>
         </div>
     );
 };

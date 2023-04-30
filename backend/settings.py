@@ -2,6 +2,8 @@ import os
 
 ROOT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
+ROOT_DIR = os.path.join(ROOT_DIR,"backend")
+
 MODELS_DIR = os.path.join(ROOT_DIR, 'models')
 
 RESOURCES_DIR = os.path.join(ROOT_DIR, 'resources')

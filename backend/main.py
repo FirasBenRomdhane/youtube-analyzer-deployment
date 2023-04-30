@@ -8,9 +8,13 @@ from fastapi.responses import JSONResponse
 from fastapi.middleware.cors import CORSMiddleware
 import whisper
 import json
+from transformers import pipeline
+from qa import get_answer
 
 from settings import *
 from transcribe import download, transcribe
+from summarization import summarize
+
 
 app = FastAPI()
 
@@ -30,21 +34,9 @@ app.add_middleware(
 
 model_name = "small"
 model = whisper.load_model(model_name)
+nlp = pipeline('question-answering', model='etalab-ia/camembert-base-squadFR-fquad-piaf', tokenizer='etalab-ia/camembert-base-squadFR-fquad-piaf')
 
-class ConnectionManager:
-    def __init__(self):
-        self.active_connections = []
 
-    async def connect(self, websocket: WebSocket):
-        await websocket.accept()
-        self.active_connections.append(websocket)
-
-    def disconnect(self, websocket: WebSocket):
-        self.active_connections.remove(websocket)
-
-    async def send_message(self, message: str):
-        for connection in self.active_connections:
-            await connection.send_text(message)
 
 
 @app.exception_handler(RequestValidationError)
@@ -54,31 +46,57 @@ async def validation_exception_handler(request, exc):
         content={"message": "Invalid request body"},
     )
 
-manager = ConnectionManager()
+
+
+@app.websocket("/qa")
+async def question_answering(websocket: WebSocket):
+    with open(os.path.join('resources','transcriptions','output.json'), mode='r') as f:
+                document = json.load(f)['transcription']
+    await websocket.accept()
+    try:
+        while True:
+            query = await websocket.receive_text()            
+            answer = get_answer(query,document)
+            await websocket.send_text(answer) 
+    except WebSocketDisconnect:
+        print('Websocket connection closed.')
+
+
+
+
+
+        
 
 @app.websocket("/transcribe")
 async def websocket_endpoint(websocket: WebSocket):
-    await manager.connect(websocket)
+    await websocket.accept()
     try:
-
-
         url = await websocket.receive_text()
+        await websocket.send_text("Downloading Video")
+        audio = download(url, 360, AUDIO_DIR)
+        if audio is not None:
+            audio_path = os.path.join(AUDIO_DIR, audio["filename"])
+            await websocket.send_text("Transcribing Audio")
+            transcript = transcribe(model, audio_path,save=False)
 
-        await manager.send_message("Downloading Video")
-        video = download(url, 360, VIDEOS_DIR)
+            data = {
+                "title":audio["title"],
+                "url":url,
+                "transcription":transcript,
+                "summary": summarize(transcript) 
+            }
 
-        video_path = os.path.join(VIDEOS_DIR, video["filename"])
-            
-        await manager.send_message("Transcribing Audio")
-        transcript = transcribe(model, video_path, True)
 
-        data = {"title":video["title"], "url":url,"transcription":transcript}
+            with open(os.path.join(TRANSCRIPTIONS_DIR,'output.json'), 'w+', encoding='UTF-8') as f:
+                json.dump(data, f, indent=2, ensure_ascii=False)
 
-        with open(os.path.join(TRANSCRIPTIONS_DIR,'output.json'), 'w+') as f:
-            json.dump(data, f, indent=2, ensure_ascii=False)
+            await websocket.send_text(data['summary'][0])
+            await websocket.send_text("done")
 
-        await manager.send_message("Ready for your questions!")
+        else:
+            await websocket.send_text("Not a valid url")
 
     except WebSocketDisconnect:
-        manager.disconnect(websocket)
+        print('Websocket connection closed.')
+        
 

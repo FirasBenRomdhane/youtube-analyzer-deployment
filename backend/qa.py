@@ -9,9 +9,7 @@ args = abc.abstractproperty()
 nlp = pipeline('question-answering', model='etalab-ia/camembert-base-squadFR-fquad-piaf', tokenizer='etalab-ia/camembert-base-squadFR-fquad-piaf')
 
 
-def get_answer(query, text_file):
-    with open(text_file, mode='r') as f:
-        document = json.load(f)['transcription']
+def get_answer(query, document):
 
     result = nlp({
     'question': query,
