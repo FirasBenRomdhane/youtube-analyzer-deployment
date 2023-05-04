@@ -4,6 +4,7 @@ import './Home.css';
 
 
 
+
 const Home = () => {
 
     const [text, setText] = useState('');
@@ -94,12 +95,19 @@ const Home = () => {
 
 
     return (
+
+        <div>
+
         <div className="home-container">
             <form onSubmit={handleSubmit}>
                 <input type="text" value={text} onChange={handleTextChange} />
-                {connectionStatus === 'Connected' && <button type="submit">Transcribe</button>}
+                { <button type="submit">Transcribe</button>}
+                {
+                    //connectionStatus === 'Connected' &&
+                }
             </form>
             <div className="messages-container" ref={messagesRef}></div>
+        </div>
         </div>
     );
 };
