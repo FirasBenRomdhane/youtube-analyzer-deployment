@@ -40,6 +40,15 @@ def download(url, resolution, output_path):
 
 def transcribe(model, input_path, save):
     print("Transcribing", input_path)
+
+    """segments,_ = model.transcribe(input_path, beam_size=5, vad_filter=True)
+    text = {}
+    for i,segment in enumerate(segments):
+        text[i] = {"start": segment.start, "end": segment.end, "text": segment.text}
+
+
+    return text"""
+
     result = model.transcribe(input_path)    
     text = [item["text"] for item in result["segments"]]
     text = "".join(text)

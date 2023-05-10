@@ -9,11 +9,20 @@ from fastapi.middleware.cors import CORSMiddleware
 import whisper
 import json
 from transformers import pipeline
-from qa import get_answer
 
 from settings import *
 from transcribe import download, transcribe
-from summarization import summarize
+from summarization import summarize, load_sum_model
+from question_answering import load_qa_model, get_answer 
+from sentiment_analysis import load_sa_model, get_sentiment
+
+
+from faster_whisper import WhisperModel
+
+from transformers import logging
+
+logging.set_verbosity_warning()
+logging.set_verbosity_error()
 
 
 app = FastAPI()
@@ -32,10 +41,22 @@ app.add_middleware(
 )
 
 
-model_name = "small"
-model = whisper.load_model(model_name)
-nlp = pipeline('question-answering', model='etalab-ia/camembert-base-squadFR-fquad-piaf', tokenizer='etalab-ia/camembert-base-squadFR-fquad-piaf')
+#### LOADING MODELS
 
+# Transription
+whisper_model = whisper.load_model("small")
+#whisper_model = WhisperModel("small", device="cuda", compute_type="int8")
+
+# Question Answering
+camembert = pipeline('question-answering', model='etalab-ia/camembert-base-squadFR-fquad-piaf', tokenizer='etalab-ia/camembert-base-squadFR-fquad-piaf')
+qa_model, qa_tokenizer = load_qa_model()
+
+# Summarization
+t5_model = load_sum_model('t5')
+#pegasus_model, pegasus_tokenizer = load_sum_model('pegasus')
+
+# Sentiment Analysis
+sa_model, sa_tokenizer = load_sa_model()
 
 
 
@@ -56,16 +77,13 @@ async def question_answering(websocket: WebSocket):
     try:
         while True:
             query = await websocket.receive_text()            
-            answer = get_answer(query,document)
+            #answer = get_answer(query, document, qa_model, qa_tokenizer)
+            answer = get_answer(query,document,camembert)
             await websocket.send_text(answer) 
     except WebSocketDisconnect:
         print('Websocket connection closed.')
 
 
-
-
-
-        
 
 @app.websocket("/transcribe")
 async def websocket_endpoint(websocket: WebSocket):
@@ -77,13 +95,14 @@ async def websocket_endpoint(websocket: WebSocket):
         if audio is not None:
             audio_path = os.path.join(AUDIO_DIR, audio["filename"])
             await websocket.send_text("Transcribing Audio")
-            transcript = transcribe(model, audio_path,save=False)
+            transcript = transcribe(whisper_model, audio_path,save=False)
 
             data = {
                 "title":audio["title"],
                 "url":url,
                 "transcription":transcript,
-                "summary": summarize(transcript) 
+                "summary": summarize(transcript, model_name='t5', model=t5_model),
+                "senitment": get_sentiment(transcript,sa_model,sa_tokenizer)
             }
 
 
