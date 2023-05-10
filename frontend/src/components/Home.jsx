@@ -11,6 +11,12 @@ import Image from "react-bootstrap/Image";
 import page from "../images/page.jpg"
 import Navibar from "./Navibar"
 import Card from "react-bootstrap/Card";
+import QA_Image from "../images/QA.jpg"
+import TS_Image from "../images/Transcription.png"
+import KW_Image from "../images/KW.png"
+import Sum_Image from "../images/Summary.jpeg"
+import SA_Image from "../images/SA.jpeg"
+import {Link} from "react-router-dom";
 
 
 
@@ -106,28 +112,15 @@ const Home = () => {
 
     return (
 
-<<<<<<< Updated upstream
-        <div>
 
-        <div className="home-container">
-            <form onSubmit={handleSubmit}>
-                <input type="text" value={text} onChange={handleTextChange} />
-                { <button type="submit">Transcribe</button>}
-                {
-                    //connectionStatus === 'Connected' &&
-                }
-            </form>
-            <div className="messages-container" ref={messagesRef}></div>
-        </div>
-        </div>
-=======
 
         <>
             <header>
                 <Navibar />
+
             </header>
 
-            <Container fluid>
+            <Container fluid className="bg-dark text-light p-5 border-top border-danger">
                 <Row className="px-4 my-5">
                     <Col sm={7}>
                         <Image
@@ -139,7 +132,8 @@ const Home = () => {
                             />
                     </Col>
                     <Col sm={5}>
-                        <h1 className="font-weight-light">What is InfoMiner about?</h1>
+                        <br/>
+                        <h1 className="font-weight-light">Welcome to Info-Miner!</h1>
                         <p className="mt-4">
                             Introducing our AI-powered video transcription and analysis service! With this service, you can easily convert any video into accurate and searchable text, extract relevant keywords, and obtain a summary of the content.
                             <br/>
@@ -152,41 +146,114 @@ const Home = () => {
                     </Col>
 
                 </Row>
-                <Row className="px-4 my-5">
+            </Container>
 
-                        <Card className="text-center my-5 py-4">
-                            <Card.Header as="h5">Transcribe Video to Text</Card.Header>
+            <Container fluid className="border-top border-danger">
+                <Row className="px-4 my-5 ">
+                    <Col className="d-flex justify-content-center">
+                        <Card style={{ width: '18rem' }}>
+                            <Card.Img variant="top" src={TS_Image} height="175px"/>
                             <Card.Body>
-                                <Card.Title>Input the URL of your video:</Card.Title>
+                                <Card.Title>Video to Text</Card.Title>
                                 <Card.Text>
-                                    <form onSubmit={handleSubmit}>
-                                        <input type="text" value={text} onChange={handleTextChange} /><br/><br/>
-                                        { <Button variant="primary" type="submit">Transcribe</Button>}
-                                        {
-                                            //connectionStatus === 'Connected' &&
-                                        }
-                                    </form>
-
-                                    <div className="messages-container" ref={messagesRef}></div>
+                                    Create a textual transcript of a video of your choice in mere seconds
                                 </Card.Text>
-
+                                <Link to="/transcribe"><Button variant="danger">Transcribe >></Button></Link>
                             </Card.Body>
                         </Card>
+                    </Col>
 
+                    <Col className="d-flex justify-content-center">
+                        <Card style={{ width: '18rem' }}>
+                            <Card.Img variant="top" src={QA_Image} height="175px" />
+                            <Card.Body>
+                                <Card.Title>Question Answering</Card.Title>
+                                <Card.Text>
+                                    Give our model a paragraph and ask a question related to your input for a precise answer
+                                </Card.Text>
+                                <Link to="/QA"><Button variant="danger">Ask a question >></Button></Link>
+                            </Card.Body>
+                        </Card>
+                    </Col>
 
+                    <Col className="d-flex justify-content-center">
+                        <Card style={{ width: '18rem' }}>
+                            <Card.Img variant="top" src={KW_Image} height="175px" />
+                            <Card.Body>
+                                <Card.Title>Keyword Extraction</Card.Title>
+                                <Card.Text>
+                                    Extract the relevant keywords present in the most complex documents
+                                </Card.Text>
+                                <Link to="/Keyword"><Button variant="danger">Extract >></Button></Link>
+                            </Card.Body>
+                        </Card>
+                    </Col>
+                </Row>
+                <Row className="px-4 my-5 ">
+                    <Col className="d-flex justify-content-center">
+                        <Card style={{ width: '18rem' }}>
+                            <Card.Img variant="top" src={SA_Image} height="175px" />
+                            <Card.Body>
+                                <Card.Title>Sentiment Analysis</Card.Title>
+                                <Card.Text>
+                                    Understand the intentions and emotions of the speakers throughout their dialogue
+                                </Card.Text>
+                                <Link to="/Sentiment"><Button variant="danger">Analyse >></Button></Link>
+                            </Card.Body>
+                        </Card>
+                    </Col>
+
+                    <Col className="d-flex justify-content-center">
+                        <Card style={{ width: '18rem' }}>
+                            <Card.Img variant="top" src={Sum_Image} height="175px"  />
+                            <Card.Body>
+                                <Card.Title>Summarization</Card.Title>
+                                <Card.Text>
+                                    Summarize papers, meet recording and long lessons into comprehensive abstracts
+                                </Card.Text>
+                                <Link to="/Summarize"><Button variant="danger">Summarize >></Button></Link>
+                            </Card.Body>
+                        </Card>
+                    </Col>
                 </Row>
 
             </Container>
+            {/*
+            <Container fluid>
+                <Row className="px-4 my-5">
+
+                    <Card className="text-center my-5 py-4">
+                        <Card.Header as="h5">Transcribe Video to Text</Card.Header>
+                        <Card.Body>
+                            <Card.Title>Input the URL of your video:</Card.Title>
+                            <Card.Text>
+                                <form onSubmit={handleSubmit}>
+                                    <input type="text" value={text} onChange={handleTextChange} /><br/><br/>
+                                    { <Button variant="danger" type="submit">Transcribe</Button>}
+                                    {
+                                        //connectionStatus === 'Connected' &&
+                                    }
+                                </form>
+
+                                <div className="messages-container" ref={messagesRef}></div>
+                            </Card.Text>
+
+                        </Card.Body>
+                    </Card>
+
+
+                </Row>
+            </Container>
+            */}
             <footer className="bg-dark text-center py-4 mt-5">
                 <Container className="px-5">
-                    <a href="https://aispektra.blogspot.com/p/home.html">Check our previous projects</a>
+                    <a href="https://aispektra.blogspot.com/p/home.html" target="_blank" rel="noopener noreferrer">Check our previous projects</a>
                 </Container>
             </footer>
 
 
         </>
 
->>>>>>> Stashed changes
     );
 };
 

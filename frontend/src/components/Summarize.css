@@ -1,0 +1,7 @@
+.container-background1 {
+    background-image: url("../images/BG_SUM.jpg");
+    background-size: cover;
+    display: flex;
+    height: 100vh;
+    width: 100%;
+}

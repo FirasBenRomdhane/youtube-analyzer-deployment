@@ -2,14 +2,14 @@ import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
-
+import {LinkContainer} from 'react-router-bootstrap'
 import logo1 from "../images/Info3.svg";
 import {Link} from "react-router-dom";
 
 function Navibar() {
     return (
         <Navbar bg="dark" variant="dark" expand="lg">
-            <Container>
+            <Container fluid>
                 <Navbar.Brand >
                     <Link to="/home">
                         <img width="120" height="auto" className="img-responsive" src={logo1}  alt="logo1" />
@@ -19,19 +19,24 @@ function Navibar() {
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="me-auto">
-                        <Nav.Link href="/home">Home</Nav.Link>
-                        <Nav.Link href="#link">Link</Nav.Link>
-                        <NavDropdown title="Dropdown" id="basic-nav-dropdown">
-                            <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-                            <NavDropdown.Item href="#action/3.2">
-                                Another action
-                            </NavDropdown.Item>
-                            <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
+                        <LinkContainer to="/home"><Nav.Link >Home</Nav.Link></LinkContainer>
+                        <Nav.Link href="https://spektravie.blogspot.com/2023/04/extracting-relevant-information-from.html" target="_blank" rel="noopener noreferrer">Blog</Nav.Link>
+                        <NavDropdown title="Services" id="basic-nav-dropdown">
+                            <NavDropdown.Item ><Link className="text-dark text-decoration-none" to="/transcribe">Transcribe</Link></NavDropdown.Item>
                             <NavDropdown.Divider />
-                            <NavDropdown.Item href="#action/3.4">
-                                Separated link
+                            <NavDropdown.Item >
+                                <Link className="text-dark text-decoration-none" to="/qa"> Question Answering</Link>
                             </NavDropdown.Item>
+                            <NavDropdown.Divider />
+                            <NavDropdown.Item><Link className="text-dark text-decoration-none" to="/sentiment">Sentiment Analysis</Link></NavDropdown.Item>
+                            <NavDropdown.Divider />
+                            <NavDropdown.Item><Link className="text-dark text-decoration-none" to="/keyword">Keyword Extraction</Link></NavDropdown.Item>
+                            <NavDropdown.Divider />
+                            <NavDropdown.Item><Link className="text-dark text-decoration-none" to="/summarize">Summarization</Link></NavDropdown.Item>
+
+
                         </NavDropdown>
+
                     </Nav>
                 </Navbar.Collapse>
             </Container>

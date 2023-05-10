@@ -1,5 +1,13 @@
 import React, { useState, useEffect, useRef } from "react";
 import './QA.css';
+import {Container, Form} from "react-bootstrap";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
+import Button from "react-bootstrap/Button";
+import Image from "react-bootstrap/Image";
+import Navibar from "./Navibar"
+import Card from "react-bootstrap/Card";
+
 
 const QA = () => {
 
@@ -102,16 +110,36 @@ const QA = () => {
 
   return (
     <>
-      <div className="qa-container">
-      <a href="/home">Home</a>
-        <div className="messages" ref={messagesRef}>
-        </div>
-        <form onSubmit={handleQASubmit}>
-          <input type="text" ref={inputRef} value={text} onChange={handleQATextChange} />
-          {connectionStatus === 'Connected' && <button type="submit" ref={submitRef} id="submit-btn">Ask</button>}
-        </form>
 
+      <header>
+        <Navibar />
+      </header>
+      <div className="container-background">
+      <Container fluid >
+        <Row className="px-4 my-5">
+          <Card className="text-center text-light bg-transparent my-5 py-4">
+            <Card.Header as="h5">Question Answering</Card.Header>
+            <Card.Body>
+              <Card.Title>Ask the model your question:</Card.Title>
+              <Card.Text>
+                <br/>
+                <form onSubmit={handleQASubmit}>
+                  <input type="text" ref={inputRef} value={text} onChange={handleQATextChange} /><br/><br/>
+                  { <Button variant="danger" type="submit" ref={submitRef} id="submit-btn">Ask</Button>}
+                </form>
+
+              </Card.Text>
+
+            </Card.Body>
+          </Card>
+        </Row>
+        <Row className="px-4 my-5">
+          <div className="messages" ref={messagesRef}>
+          </div>
+        </Row>
+      </Container>
       </div>
+
     </>
   );
 };

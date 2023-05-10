@@ -7,11 +7,6 @@ body{
 .home-container{
     width: 100vw;
     height: 100vh;
-<<<<<<< Updated upstream
-    background-image: url("../images/bg-3.png") ;
-=======
-
->>>>>>> Stashed changes
     background-size: cover;
     display: flex;
     flex-direction: column;
