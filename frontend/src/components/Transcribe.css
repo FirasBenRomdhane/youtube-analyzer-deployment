@@ -1,0 +1,8 @@
+.container-background2 {
+    background-image: url("../images/BG_TRANS.jpg");
+    background-size: cover;
+    display: flex;
+    height: 100vh;
+    width: 100%;
+}
+

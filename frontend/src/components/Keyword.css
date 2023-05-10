@@ -1,0 +1,7 @@
+.container-background4 {
+    background-image: url("../images/BG_KEY.jpg");
+    background-size: cover;
+    display: flex;
+    height: 100vh;
+    width: 100%;
+}
